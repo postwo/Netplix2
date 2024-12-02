@@ -262,3 +262,35 @@ erDiagram
 | `docs`     | 문서 추가 및 수정                                             |
 | `rename`   | 패키지 혹은 폴더명, 클래스명 수정 (단독으로 시행하였을 시)                     |
 | `remove`   | 패키지 혹은 폴더, 클래스를 삭제하였을 때 (단독으로 시행하였을 시)                 |
+
+
+# docker compose 작성방법
+# power shell 명령어 
+1. pwd로 경로 확인
+2. cd ./infra
+3. docker-compose -f ./docker-compose.yml up -d 이걸로 연결하면 끝
+4. 만약에 이미 mysql 루트계정이 있으면 굳이 쓸필요 없다.
+version: '3.8'
+services:
+mysql:
+image: mysql:8.0 // mysql 최신버전이다
+container_name: netplix-mysql //컨테이너이름은 내가 만다는거다.
+restart: always
+ports:
+- '3306:3306'
+environment:
+MYSQL_ROOT_PASSWORD: admin // docker로 접속할때 루트 계정 비밀번호이다.
+TZ: Asia/Seoul
+volumes:
+- ./db/mysql/data:/var/lib/mysql
+- ./db/mysql/init:/docker-entrypoint-initdb.d
+platform: linux/x86_64
+
+redis:
+container_name: netplix-redis
+hostname: redis
+image: redis:alpine
+ports:
+- 6379:6379
+command: redis-server
+restart: always
