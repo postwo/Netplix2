@@ -1,5 +1,6 @@
 package fast.campus.netplix2.config;
 
+import fast.campus.netplix2.security.NetplixUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final NetplixUserDetailService netplixUserDetailService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -28,6 +30,8 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.formLogin(AbstractHttpConfigurer::disable);
         httpSecurity.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+
+        httpSecurity.userDetailsService(netplixUserDetailService);
 
         httpSecurity.authorizeHttpRequests(auth ->
                 auth.anyRequest().authenticated());
