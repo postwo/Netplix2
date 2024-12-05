@@ -294,3 +294,9 @@ ports:
 - 6379:6379
 command: redis-server
 restart: always
+
+# redis DeskTop 다운로드 방법 링크
+https://st-d.tistory.com/121
+
+## github 릴리즈 링크
+https://github.com/qishibo/AnotherRedisDesktopManager/releases 
