@@ -12,12 +12,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SampleRepository implements SamplePersistencePort {
 
-    private final SampleJpaRepsitory sampleJpaRepsitory;
+    private final SampleJpaRepository sampleJpaRepository;
 
     @Override
     @Transactional
     public String getSampleName(String id) {
-        Optional<SampleEntity> byId = sampleJpaRepsitory.findById(id);
+        Optional<SampleEntity> byId = sampleJpaRepository.findById(id);
         return byId.map(SampleEntity::getSampleName).orElseThrow();
     }
 }
