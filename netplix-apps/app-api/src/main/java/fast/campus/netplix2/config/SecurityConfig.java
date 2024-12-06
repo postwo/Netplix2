@@ -36,7 +36,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(auth ->
                 auth.anyRequest().authenticated());
 
-        httpSecurity.oauth2Login(oauth2 -> oauth2.failureUrl("/login?error=true"));
+//        httpSecurity.oauth2Login(oauth2 -> oauth2.failureUrl("/login?error=true"));
 
         return httpSecurity.build();
     }

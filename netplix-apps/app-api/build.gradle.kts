@@ -8,8 +8,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-    implementation("org.springframework.security:spring-security-oauth2-client")
+//    implementation("org.springframework.boot:spring-boot-starter-oauth2-client") //지금은 실행할려면 에러가 뜨기 때문에 주석처리
+//    implementation("org.springframework.security:spring-security-oauth2-client")
     implementation("org.springframework.data:spring-data-commons")
 
 }
