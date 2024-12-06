@@ -304,3 +304,7 @@ https://github.com/qishibo/AnotherRedisDesktopManager/releases
 # (매우 중요) 
 ### main에 있는  build.gradle.kts 에 configureByLabels("querydsl")  이러한것들이 라벨인데 가져다 사용 할려면
 ### 각각 모듈에 있는 gradle.properties에 label=java,library 이러한 형식으로 작성하면 라이브러리를 가져다 사용할수 있다.
+
+# jwt 비밀번호 생성 
+터미널에서 openssl rand -hex 32 
+이렇게 무작위로 생성된다.
