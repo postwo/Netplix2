@@ -4,4 +4,6 @@ import fast.campus.netplix2.user.response.UserResponse;
 
 public interface FetchUserUseCase {
     UserResponse findUserByEmail(String email);
+
+    UserResponse findByProviderId(String providerId);
 }

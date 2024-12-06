@@ -12,5 +12,9 @@ dependencies {
     runtimeOnly(project(":netplix-adapters:adapter-persistence"))
     runtimeOnly(project(":netplix-adapters:adapter-redis"))
 
+    implementation("io.jsonwebtoken:jjwt-api")
+    implementation("io.jsonwebtoken:jjwt-impl")
+    implementation("io.jsonwebtoken:jjwt-jackson")
+
 
 }

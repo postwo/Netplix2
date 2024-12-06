@@ -1,5 +1,5 @@
 package fast.campus.netplix2.token;
 
-public interface SearchTokenProt {
+public interface SearchTokenPort {
     TokenPortResponse findByUserId(String userId);
 }
