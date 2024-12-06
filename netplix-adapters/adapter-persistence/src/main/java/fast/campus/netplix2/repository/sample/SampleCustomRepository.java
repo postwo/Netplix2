@@ -1,6 +1,4 @@
-package fast.campus.netplix2.repository;
-
-import fast.campus.netplix2.entity.SampleEntity;
+package fast.campus.netplix2.repository.sample;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
-package fast.campus.netplix2.repository;
+package fast.campus.netplix2.repository.sample;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import fast.campus.netplix2.entity.QSampleEntity;
-import fast.campus.netplix2.entity.SampleEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
