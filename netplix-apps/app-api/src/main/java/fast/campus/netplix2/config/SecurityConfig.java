@@ -34,7 +34,8 @@ public class SecurityConfig {
         httpSecurity.userDetailsService(netplixUserDetailService);
 
         httpSecurity.authorizeHttpRequests(auth ->
-                auth.requestMatchers("/api/v1/user/register").permitAll()
+                auth.requestMatchers("/api/v1/user/register",
+                                "/api/v1/user/login" ).permitAll()
                         .anyRequest().authenticated()
         );
 

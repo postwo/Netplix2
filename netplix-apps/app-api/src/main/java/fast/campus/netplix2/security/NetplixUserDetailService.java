@@ -3,6 +3,7 @@ package fast.campus.netplix2.security;
 import fast.campus.netplix2.user.FetchUserUseCase;
 import fast.campus.netplix2.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,7 +27,7 @@ public class NetplixUserDetailService implements UserDetailsService {
                 userByEmail.getPassword(),
                 userByEmail.getEmail(),
                 userByEmail.getPhone(),
-                List.of(new SimpleGrantedAuthority(userByEmail.getRole()))
+                List.of(new SimpleGrantedAuthority(StringUtils.isBlank(userByEmail.getRole()) ? "-" : userByEmail.getRole()))
         );
     }
 }
