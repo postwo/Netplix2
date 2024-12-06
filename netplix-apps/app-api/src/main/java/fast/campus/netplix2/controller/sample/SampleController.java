@@ -1,4 +1,4 @@
-package fast.campus.netplix2.sample;
+package fast.campus.netplix2.controller.sample;
 
 import fast.campus.netplix2.sample.response.SampleResponse;
 import lombok.RequiredArgsConstructor;

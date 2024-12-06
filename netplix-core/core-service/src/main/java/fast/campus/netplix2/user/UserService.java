@@ -1,5 +1,6 @@
 package fast.campus.netplix2.user;
 
+import fast.campus.netplix2.exception.UserException;
 import fast.campus.netplix2.user.command.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,7 @@ public class UserService implements FetchUserUseCase {
     public UserResponse findUserByEmail(String email) {
         Optional<UserPortReponse> byEmail = fetchUserPort.findByEmail(email);
         if (byEmail.isEmpty()){
-            // 나중에 exception 커스텀하기
-            throw new RuntimeException();
+            throw new UserException.UserDoseNotExistException();
         }
 
         UserPortReponse userPortReponse = byEmail.get();

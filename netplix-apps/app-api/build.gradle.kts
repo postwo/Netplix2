@@ -1,5 +1,6 @@
 dependencies {
     implementation(project(":netplix-core:core-usecase"))
+    implementation(project(":netplix-commons"))
 
     runtimeOnly(project(":netplix-core:core-service"))//runtime 시점에 그모듈을 바라보게 한다.
 

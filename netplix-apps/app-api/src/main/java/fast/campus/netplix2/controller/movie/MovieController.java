@@ -1,5 +1,6 @@
 package fast.campus.netplix2.controller.movie;
 
+import fast.campus.netplix2.controller.NetplixApiResponse;
 import fast.campus.netplix2.movie.FetchMovieUseCase;
 import fast.campus.netplix2.movie.response.MoviePageableResponse;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,8 @@ public class MovieController {
     private final FetchMovieUseCase fetchMovieUseCase;
 
     @GetMapping("/api/v1/movie/client/{page}")
-    public String fetchMoviePageables(@PathVariable int page){
-        MoviePageableResponse moviePageableResponse = fetchMovieUseCase.fetchFromClient(page); //TmdbMovielisthttpClient 에가서 request걸고 디버그 찍어보기
-        return"";
+    public NetplixApiResponse<MoviePageableResponse> fetchMoviePageables(@PathVariable int page){
+        MoviePageableResponse pageableMovieResponse = fetchMovieUseCase.fetchFromClient(page); //TmdbMovielisthttpClient 에가서 request걸고 디버그 찍어보기
+        return NetplixApiResponse.ok(pageableMovieResponse);
     }
 }
