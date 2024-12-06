@@ -1,11 +1,15 @@
 package fast.campus.netplix2.controller.user.requset;
 
+import fast.campus.netplix2.annotation.PasswordEncryption;
 import lombok.Getter;
 
 @Getter
 public class UserRegisterRequest { // 프론트에서 받아올 데이터
     private final String username;
-    private final String password;
+
+    @PasswordEncryption
+    private String password;
+
     private final String email;
     private final String phone;
 
