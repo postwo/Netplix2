@@ -6,7 +6,6 @@ import fast.campus.netplix2.user.RegisterUserUseCase;
 import fast.campus.netplix2.user.command.UserRegistrationCommand;
 import fast.campus.netplix2.user.response.UserRegistrationResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final RegisterUserUseCase registerUserUseCase;
-    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public NetplixApiResponse<UserRegistrationResponse> register(
@@ -26,7 +24,7 @@ public class UserController {
     ) {
        UserRegistrationResponse register = registerUserUseCase.register(UserRegistrationCommand.builder()
                 .username(request.getUsername())
-                .encryptedPassword(passwordEncoder.encode(request.getPassword()))
+                .encryptedPassword(request.getPassword())
                 .email(request.getEmail())
                 .phone(request.getPhone())
                 .build());
