@@ -1,4 +1,4 @@
-package fast.campus.netplix2.user.command;
+package fast.campus.netplix2.user.response;
 
 import lombok.Builder;
 import lombok.Getter;

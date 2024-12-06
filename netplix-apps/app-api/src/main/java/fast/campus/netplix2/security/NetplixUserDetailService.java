@@ -1,7 +1,7 @@
 package fast.campus.netplix2.security;
 
 import fast.campus.netplix2.user.FetchUserUseCase;
-import fast.campus.netplix2.user.command.UserResponse;
+import fast.campus.netplix2.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
