@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
@@ -48,4 +50,10 @@ public class UserController {
         return NetplixApiResponse.ok("access-token");
     }
 
+    @PostMapping("/callback")
+    public NetplixApiResponse<String> kakaoCallback(@RequestBody Map<String,String> request){
+        String code =request.get("code");
+
+        return NetplixApiResponse.ok(null);
+    }
 }
