@@ -10,7 +10,7 @@ spring:
         registration:
           kakao:
             client-id:
-            client-secret: 
+            client-secret:
             client-name: Kakao
             authorization-grant-type: authorization_code
             redirect-uri: "http://localhost:3000/login/oauth2/code/kakao"
@@ -22,3 +22,9 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
+
+jwt:
+  secret: 7e0b9479f72ce9dd31b6c8c661bb047b2dcfc324d81b78de870959a38826f712
+  expire:
+    access-token: 1
+    refresh-token: 24
