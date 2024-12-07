@@ -4,4 +4,6 @@ import java.util.Optional;
 
 public interface FetchUserPort {
     Optional<UserPortReponse> findByEmail(String email);
+
+    Optional<UserPortReponse> findByproviderid(String providerId);
 }
