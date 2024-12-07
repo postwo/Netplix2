@@ -329,3 +329,5 @@ job:
 name: ${job.name:NONE}
 
 --job.name이부분은  name: ${job.name:NONE} 여기서 가지고 온거다.
+
+# https://github.com/kdohyeon/fcss-project 여기서 commit 내용 보면서 다시 처음부터 해보기 
