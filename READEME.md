@@ -312,3 +312,20 @@ https://github.com/qishibo/AnotherRedisDesktopManager/releases
 # kakaooauth (중요)
 client-id 는 REST API 키를 뜻한다.
 client-secret 는 카카오 보안에 있는 코드를 뜻한다.
+
+# 에러 
+Caused by: org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned 
+이에러는 소셜 테이블에 같은 providerid가 2개가 있어서 발생하는 에러다 
+
+
+# 스프링배치 
+batchapplication에서 config program args에다가
+--job.name=MigrateMoviesFromTadbBatch를 입력해주면 된다. 
+
+MigrateMoviesFromTadbBatch이거는 batch 모둘에 있는 잡이름을 뜻한다.
+
+batch:
+job:
+name: ${job.name:NONE}
+
+--job.name이부분은  name: ${job.name:NONE} 여기서 가지고 온거다.
