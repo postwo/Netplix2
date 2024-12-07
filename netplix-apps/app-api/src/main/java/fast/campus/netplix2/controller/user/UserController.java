@@ -5,12 +5,14 @@ import fast.campus.netplix2.controller.user.requset.UserLoginRequest;
 import fast.campus.netplix2.controller.user.requset.UserRegisterRequest;
 import fast.campus.netplix2.security.NetplixAuthUser;
 import fast.campus.netplix2.token.FetchTokenUseCase;
+import fast.campus.netplix2.token.UpdateTokenUseCase;
 import fast.campus.netplix2.user.FetchUserUseCase;
 import fast.campus.netplix2.user.RegisterUserUseCase;
 import fast.campus.netplix2.user.command.UserRegistrationCommand;
 import fast.campus.netplix2.user.response.UserRegistrationResponse;
 import fast.campus.netplix2.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -27,6 +29,7 @@ public class UserController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;//인증 용도
     private final FetchTokenUseCase fetchTokenUseCase;
     private final FetchUserUseCase fetchUserUseCase;
+    private final UpdateTokenUseCase updateTokenUseCase;
 
     @PostMapping("/register")
     public NetplixApiResponse<UserRegistrationResponse> register(
@@ -62,6 +65,18 @@ public class UserController {
         String accessTokenFromKakao = fetchTokenUseCase.getTokenFromKakao(code);
         UserResponse kakaouser = fetchUserUseCase.findKakaoUser(accessTokenFromKakao);
 
-        return NetplixApiResponse.ok(null);
+        // 소셜 사용자가 이미 존재하는지 확인을 해야 하고
+        UserResponse byProviderId = fetchUserUseCase.findByProviderId(kakaouser.getProviderId());
+
+        // 만약 존재하지 않으면, 회원가입을 하는 부분
+        if (ObjectUtils.isEmpty(byProviderId)){
+            registerUserUseCase.registerSocialUser(
+                     kakaouser.getUsername()
+                    ,kakaouser.getProvider()
+                    ,kakaouser.getProviderId());
+        }
+
+        // 토큰을 발급해서 반환
+        return NetplixApiResponse.ok(updateTokenUseCase.upsertToken(kakaouser.getProviderId()));
     }
 }
