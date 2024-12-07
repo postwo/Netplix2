@@ -32,6 +32,7 @@ public class TokenService implements FetchTokenUseCase, CreateTokenUseCase, Upda
     private final InsertTokenPort insertTokenPort;
     private final UpdateTokenPort updateTokenPort;
     private final FetchUserUseCase fetchUserUseCase;
+    private final KakaoTokenPort kakaoTokenPort;
 
 
     @Override
@@ -60,7 +61,7 @@ public class TokenService implements FetchTokenUseCase, CreateTokenUseCase, Upda
 
     @Override
     public String getTokenFromKakao(String code) {
-        return null;
+        return kakaoTokenPort.getAccessTokenByCode(code);
     }
 
     @Override

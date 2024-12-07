@@ -4,6 +4,7 @@ import fast.campus.netplix2.controller.NetplixApiResponse;
 import fast.campus.netplix2.controller.user.requset.UserLoginRequest;
 import fast.campus.netplix2.controller.user.requset.UserRegisterRequest;
 import fast.campus.netplix2.security.NetplixAuthUser;
+import fast.campus.netplix2.token.FetchTokenUseCase;
 import fast.campus.netplix2.user.RegisterUserUseCase;
 import fast.campus.netplix2.user.command.UserRegistrationCommand;
 import fast.campus.netplix2.user.response.UserRegistrationResponse;
@@ -22,6 +23,7 @@ public class UserController {
 
     private final RegisterUserUseCase registerUserUseCase;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;//인증 용도
+    private final FetchTokenUseCase fetchTokenUseCase;
 
     @PostMapping("/register")
     public NetplixApiResponse<UserRegistrationResponse> register(
@@ -53,6 +55,8 @@ public class UserController {
     @PostMapping("/callback")
     public NetplixApiResponse<String> kakaoCallback(@RequestBody Map<String,String> request){
         String code =request.get("code");
+
+        String accessTokenFromKakao = fetchTokenUseCase.getTokenFromKakao(code);
 
         return NetplixApiResponse.ok(null);
     }
