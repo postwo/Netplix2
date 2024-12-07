@@ -5,9 +5,11 @@ import fast.campus.netplix2.controller.user.requset.UserLoginRequest;
 import fast.campus.netplix2.controller.user.requset.UserRegisterRequest;
 import fast.campus.netplix2.security.NetplixAuthUser;
 import fast.campus.netplix2.token.FetchTokenUseCase;
+import fast.campus.netplix2.user.FetchUserUseCase;
 import fast.campus.netplix2.user.RegisterUserUseCase;
 import fast.campus.netplix2.user.command.UserRegistrationCommand;
 import fast.campus.netplix2.user.response.UserRegistrationResponse;
+import fast.campus.netplix2.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,6 +26,7 @@ public class UserController {
     private final RegisterUserUseCase registerUserUseCase;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;//인증 용도
     private final FetchTokenUseCase fetchTokenUseCase;
+    private final FetchUserUseCase fetchUserUseCase;
 
     @PostMapping("/register")
     public NetplixApiResponse<UserRegistrationResponse> register(
@@ -57,6 +60,7 @@ public class UserController {
         String code =request.get("code");
 
         String accessTokenFromKakao = fetchTokenUseCase.getTokenFromKakao(code);
+        UserResponse kakaouser = fetchUserUseCase.findKakaoUser(accessTokenFromKakao);
 
         return NetplixApiResponse.ok(null);
     }
