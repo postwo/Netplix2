@@ -1,5 +1,6 @@
 dependencies {
     implementation(project(":netplix-core:core-port")) //의존성 연결
+    implementation(project(":netplix-core:core-domain"))
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") // jpa
     implementation("org.springframework:spring-tx")
@@ -8,4 +9,5 @@ dependencies {
     implementation("org.flywaydb:flyway-mysql")
 
     runtimeOnly("com.mysql:mysql-connector-j")
+
 }
